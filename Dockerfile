@@ -1,5 +1,15 @@
-FROM python:3.8-slim-buster
+FROM python:3.9
 
-RUN apt update && apt upgrade -y
-COPY start.sh /start.sh
-CMD ["/bin/bash", "/start.sh"]
+WORKDIR /app
+
+COPY requirements.txt /app/
+
+RUN pip3 install -r requirements.txt
+
+COPY . /app
+
+CMD ["bash","run.sh"]
+
+
+
+
